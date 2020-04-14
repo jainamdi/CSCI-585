@@ -1,0 +1,28 @@
+/* DB software browser for SQLite is used for running SQL queries
+* First create one table named STEM_SPAM.
+* Insert values into the table using insert command.
+* Then it joins STEM_STAMP table with STEM_SPAM and finds the list of ids for all those who are having SameFam null and also checks whether the ID of person
+From 1st table in join is same as SameFam from later table.
+* Then chooses all the different id satisfying the above condition whether family member has taken STEM course from there or not.
+* Then deletes the chosen records from the table STEM_SPAM.
+*/
+CREATE TABLE STEM_SPAM( 
+    Name VARCHAR(25) NOT NULL, 
+    Address VARCHAR(25) NOT NULL, 
+    ID INTEGER NOT NULL, 
+    SameFam INTEGER 
+);
+
+INSERT INTO STEM_SPAM  VALUES('Alice', 'A', 10, NULL);
+INSERT INTO STEM_SPAM  VALUES('Bob', 'B', 15, NULL);
+INSERT INTO STEM_SPAM  VALUES('Carmen', 'C', 22, NULL);
+INSERT INTO STEM_SPAM  VALUES('Diego', 'A', 9, 10);
+INSERT INTO STEM_SPAM  VALUES('Ella', 'B', 3, 15);
+INSERT INTO STEM_SPAM  VALUES('Farkhad', 'D', 11, NULL);
+
+DELETE FROM STEM_SPAM
+WHERE ID IN( 
+    SELECT DISTINCT(SP1.ID) 
+    FROM STEM_SPAM SP1 JOIN STEM_SPAM SP 
+    WHERE SP1.SameFam IS NULL AND SP.SameFam = SP1.ID 
+);

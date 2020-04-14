@@ -1,0 +1,29 @@
+* DB software browser for SQLite is used for running SQL queries
+* First create one table named ProjectRoomReservation.
+* In create query one constraint is whether start time is less than the end time of slot booking. 
+* Create trigger reservationcheker which will check the validity of booking.
+* For validating time in trigger as soon as it strikes new insert query it checks for the condition of time before inserting the record in table. 
+* The condition is the previous end time should be greater than start time in the new insert query.
+* If the condition is met the new record will be inserted and slot booking will be successful. 
+* If the condition fails it will automatically raise an error 'Already reserved slot'.
+
+CREATE TABLE ProjectRoomReservation
+(roomNum INTEGER NOT NULL,
+startTime INTEGER NOT NULL,
+endTime INTEGER NOT NULL,
+groupName CHAR(10) NOT NULL,
+PRIMARY KEY (roomNum, startTime, groupName)
+CONSTRAINT Checktime CHECK (startTime < endTIme))
+
+CREATE TRIGGER reservationchecker BEFORE INSERT ON ProjectRoomReservation
+FOR EACH ROW
+WHEN exists (select 1 from ProjectRoomReservation
+             where  endTime > new.startTime
+			 AND new.startTime>=startTime
+			 AND new.roomNum = roomNum)
+BEGIN
+  SELECT RAISE(ABORT,'Already reserved slot');
+END;
+
+insert into ProjectRoomReservation values(1,2,3,'A');
+insert into ProjectRoomReservation values(1,3,4,'A');
