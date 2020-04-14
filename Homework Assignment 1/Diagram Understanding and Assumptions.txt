@@ -1,0 +1,38 @@
+HW 1 Conceptual Entity-Relationship Diagram
+To get the clear understanding of diagram a clear description is provided of each and every entity, it’s attributes and relationships.
+	1)	Strong relationship is shown using dashed line. 
+	2)	Weak relationship is shown using solid line.
+	3)	PK represents primary key.
+	4)	FK denotes foreign key.
+	5)	Student entity stores basic data about the student. It has one derived attribute age which is calculated automatically from birthday date attribute.
+	6)	Every class and project has its start date, room number, table number, description and hourly rate.
+	7)	There are two weak entities of Student Table one is Student Status and other is Student Address Table both of them have Student_Id attribute as primary key as well as foreign key.
+	8)	Student Status entity has one attribute old/new which stores whether student is previously enrolled or new to the organization.
+	9)	Student Address entity stores address of each and every student.
+	10)	Student has fees id and status of fees paid or not in fees entity.
+	11)	Every Student can enroll in more than one coding class and every coding class will have one or more student.
+	12)	Every coding class is taken by one or more instructor and every instructor takes one or more coding classes.
+	13)	Each student can borrow at-most four books from library.
+	14)	Library has a textbook counter which has a limit of four for each student.
+	15)	Library has different sections.
+	16)	Each section may have one or more books but each textbook can only be found in any one particular section.
+	17)	Every Student can work on one or more project and every project has four students.
+	18)	Each project is supervised by one instructor but one instructor can supervise one or more than project.
+	19)	Each project_id has one group denoted by group_id.
+	20)	Every project has a specific project kit.
+	21)	Every project kit has one or more parts as per project requirement.
+	22)	Every part is ordered from multiple suppliers and in nesting they are purchased from multiple vendors.
+	23)	Each group has four students for a particular project.
+	24)	Instructor entity has primary data about the instructor.
+	25)	Instructor entity also contains age as derived attribute that is calculated automatically from birthday date.
+	26)	Instructor entity also stores total number of hours of classes taken and total number of hours project supervision is done.
+	27)	Instructor is paid individually for different classes it takes and for every project it supervises therefore they are paid using many wage_id.
+	28)	Instructor entity has Instructor Address as a weak entity strongly dependent on Instructor table.
+	29)	Each student at the end of the course will have to fill up one survey form for all the instructors he has attended classes of, all the coding classes taken in the curriculum and project they have worked on.
+	30)	Each student lives at one address only.
+	31)	Each faculty lives at one address only.
+	32)	Every Supplier generates a unique invoice of all items from different vendors with unique invoice number.
+	33)	Each textbook has it's own late penalty amount.
+	34)	Library entity also stores issue date and due date of the textbook borrowed.
+	35)	Each project will run on different microcontroller so it references the microcontroller details from microcontroller entity which contains unique mc_id for each microcontroller.
+	36)	Invoice entity contains order date and the estimated delivery date of the item for every particular order.
